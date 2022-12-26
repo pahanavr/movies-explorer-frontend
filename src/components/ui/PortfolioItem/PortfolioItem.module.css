@@ -1,0 +1,17 @@
+.portfolioItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #424242;
+  text-decoration: none;
+}
+
+
+.portfolioItem__title {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,12 @@
+.header {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 70px;
+  background-color: #073042;
+}
+
+.header_dark_type {
+  background-color: #202020;
+}

@@ -1,0 +1,66 @@
+.techs {
+  background-color: #272727;
+  padding: 100px 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.techs__title {
+  text-align: start;
+  margin-bottom: 90px;
+}
+
+.techs__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.techs__mainTitle {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: white;
+  margin: 0 0 26px;
+}
+
+.techs__description {
+  max-width: 460px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: white;
+  margin: 0 0 100px;
+}
+
+.techs__tools {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.techs__tool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 60px;
+  background: #303030;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.techs__tool:last-of-type {
+  margin: 0;
+}
+
+.techs__toolText {
+  margin: 0;
+  color: white;
+}
