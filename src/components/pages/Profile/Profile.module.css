@@ -1,12 +1,17 @@
-.profile {}
+.profile {
+  position: relative;
+}
 
 .profile__main {
-  padding: 75px 435px 70px;
+  padding: 75px 0 70px;
   background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile__form {
-  max-width: 100%;
+  width: 410px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,4 +83,23 @@
 
 .profile__button_type_red {
   color: #EE3465;
+}
+
+@media screen and (max-width: 460px) {
+  .profile__main {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .profile__title {
+    margin-bottom: 80px;
+  }
+
+  .profile__form {
+    width: 100%;
+  }
+
+  .profile__formField {
+    margin-bottom: 380px;
+  }
 }

@@ -2,6 +2,7 @@ import { SectionHeader } from '../../ui/SectionHeader/SectionHeader';
 import { links, sectionHeaders } from '../../ui/variables/variables';
 import styles from './AboutMe.module.css';
 import myPhoto from '../../../images/my_photo.jpg';
+import cx from 'classnames';
 
 export const AboutMe = () => {
   return (
@@ -10,13 +11,15 @@ export const AboutMe = () => {
         {sectionHeaders.aboutMe}
       </SectionHeader>
       <div className={styles.aboutMe__main}>
+      <img className={cx(styles.aboutMe__photo, styles.aboutMe__photo_adaptive_type)} src={myPhoto} alt='myPhoto' />
         <div className={styles.aboutMe__text}>
           <h3 className={styles.aboutMe__name}>Павел</h3>
           <p className={styles.aboutMe__position}>Фронтенд-разработчик, 28 лет</p>
           <p className={styles.aboutMe__description}>
-            Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.
+            Я родился в Калининграде, после окончания университета уехал в Санкт-Петербург, где проработал 6 лет инженером-конструктором в корабельном конструкторском бюро.
+            Последний год изучаю веб-разработку, что мне очень нравится, хочу задержаться в данной профессии и расти насколько это возможно и развиваться как профессионал.
           </p>
-          <a className={styles.aboutMe__link} href={links.github.link}>
+          <a target={'_blank'} className={styles.aboutMe__link} href={links.github.link}>
             {links.github.title}
           </a>
         </div>

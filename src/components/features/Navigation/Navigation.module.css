@@ -17,26 +17,56 @@
   margin-right: 16px;
 }
 
-.navigation__profileTitle {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  color: white;
-  margin-right: 17px;
+.navigation__burgerButton {
+  display: none;
+  background: transparent;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  transition: 0.3s;
 }
 
-.navigation__profileIconBox {
-  width: 26px;
-  height: 30px;
-  border-radius: 4px;
-  background-color: #313131;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.navigation__closeButton {
+  display: none;
+  background-color: transparent;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  position: fixed;
+  z-index: 15;
+  top: 22px;
+  right: 22px;
+  transition: 0.5s ease-in-out;
 }
 
-.navigation__profile {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navigation__closeButton:hover {
+  transition: 0.5s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.navigation__burgerMenu {
+  display: none;
+}
+
+.navigation__burgerButton:hover {
+  transition: 0.3s;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation {
+    display: none;
+  }
+
+  .navigation__burgerButton {
+    display: block;
+  }
+
+  .navigation__closeButton {
+    display: block;
+  }
+
+  .navigation__burgerMenu {
+    display: inline;
+  }
 }

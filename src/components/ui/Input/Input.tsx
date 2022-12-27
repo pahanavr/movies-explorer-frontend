@@ -1,4 +1,3 @@
-import { text } from 'node:stream/consumers';
 import styles from './Input.module.css';
 import cx from 'classnames';
 
@@ -11,7 +10,7 @@ type Props = {
   className?: string;
   labelClassName?: string;
   required?: boolean;
-  children?: string | JSX.Element | JSX.Element [];
+  children?: string | JSX.Element | JSX.Element[];
   defaultChecked?: boolean;
 }
 

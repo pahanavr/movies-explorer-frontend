@@ -56,3 +56,81 @@
   object-fit: cover;
   border-radius: 10px;
 }
+
+.aboutMe__photo_adaptive_type {
+  display: none;
+}
+
+@media screen and (max-width: 1060px) {
+  .aboutMe__text {
+    margin-right: 50px;
+  }
+
+  .aboutMe__photo {
+    width: 255px;
+    height: 310px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .aboutMe {
+    max-width: 100%;
+    background-color: #202020;
+    padding: 90px 50px;
+  }
+
+  .aboutMe__text {
+    max-width: 364px;
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutMe {
+    padding: 70px 14px;
+  }
+
+  .aboutMe__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutMe__photo {
+    display: none;
+  }
+
+  .aboutMe__photo_adaptive_type {
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  .aboutMe__text {
+    max-width: 364px;
+    margin-right: 0;
+  }
+
+  .aboutMe__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+
+  .aboutMe__position {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 20px;
+  }
+
+  .aboutMe__description {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .aboutMe__photo_adaptive_type {
+    width: 100%;
+  }
+}

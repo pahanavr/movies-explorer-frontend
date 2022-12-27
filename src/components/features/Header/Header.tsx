@@ -1,8 +1,5 @@
 import styles from './Header.module.css';
-import { Clickable } from '../../ui/Clickable/Clickable';
-import { buttons, links } from '../../ui/variables/variables';
 import cx from 'classnames';
-import { Route } from 'react-router';
 import { Logo } from '../../ui/Logo/Logo';
 import { Navigation } from '../Navigation/Navigation';
 import { NavTab } from '../NavTab/NavTab';

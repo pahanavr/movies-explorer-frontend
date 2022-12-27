@@ -5,11 +5,11 @@ import styles from './Techs.module.css';
 export const Techs = () => {
   return (
     <section className={styles.techs}>
-      <SectionHeader className={styles.techs__title}>
+      <SectionHeader className={styles.techs__header}>
         {sectionHeaders.techs}
       </SectionHeader>
       <div className={styles.techs__container}>
-        <h3 className={styles.techs__mainTitle}>
+        <h3 className={styles.techs__title}>
           7 технологий
         </h3>
         <p className={styles.techs__description}>

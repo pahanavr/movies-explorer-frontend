@@ -8,6 +8,7 @@ type Props = {
   type?: 'button' | 'submit';
   className?: string;
   onClick?: () => void;
+  blank?: boolean;
 }
 
 export const Clickable = ({
@@ -16,12 +17,16 @@ export const Clickable = ({
   type = 'button',
   className,
   onClick,
+  blank = false,
 }: Props) => {
+  const target = blank ? { target: '_blank' } : {};
+
   return (
     href ?
       <Link
         className={cx(styles.link, className)}
         to={href}
+        {...target}
       >
         {children}
       </Link>

@@ -15,3 +15,14 @@
   color: #FFFFFF;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 570px) {
+  .portfolioItem {
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  .portfolioItem__title {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

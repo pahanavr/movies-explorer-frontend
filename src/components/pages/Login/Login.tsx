@@ -7,8 +7,10 @@ import styles from './Login.module.css';
 export const Login = () => {
   return (
     <div className={styles.login}>
-      <Logo className={styles.login__headerLogo} />
-      <h2 className={styles.login__title}>Рады видеть!</h2>
+      <header className={styles.login__header}>
+        <Logo className={styles.login__headerLogo}/>
+        <h2 className={styles.login__title}>Рады видеть!</h2>
+      </header>      
       <form className={styles.login__form}>
         <Input
           labelClassName={styles.login__label}

@@ -1,6 +1,7 @@
 import { Clickable } from '../../ui/Clickable/Clickable';
 import { FilterCheckbox } from '../../ui/FilterCheckbox/FilterCheckbox';
 import { Input } from '../../ui/Input/Input';
+import { buttons } from '../../ui/variables/variables';
 import styles from './SearchForm.module.css';
 
 export const SearchForm = () => {
@@ -17,7 +18,7 @@ export const SearchForm = () => {
           <Clickable
             className={styles.searchForm__submitButton}
           >
-            Поиск
+            {buttons.search}
           </Clickable>
         </Input>
       </form>

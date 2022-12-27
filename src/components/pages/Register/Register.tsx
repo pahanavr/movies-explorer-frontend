@@ -7,8 +7,10 @@ import styles from './Register.module.css';
 export const Register = () => {
   return (
     <div className={styles.register}>
-      <Logo className={styles.register__headerLogo}/>
-      <h2 className={styles.register__title}>Добро пожаловать!</h2>
+      <header className={styles.register__header}>
+        <Logo className={styles.register__headerLogo}/>
+        <h2 className={styles.register__title}>Добро пожаловать!</h2>
+      </header>
       <form className={styles.register__form}>
         <Input
           labelClassName={styles.register__label}

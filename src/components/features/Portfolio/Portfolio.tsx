@@ -9,7 +9,13 @@ export const Portfolio = () => {
         {sectionHeaders.portfolio}
       </h2>
       {Object.values(portfolio).map((work, i) => (
-        <PortfolioItem key={i} href={work.link}>{work.title}</PortfolioItem>
+        <PortfolioItem
+          key={i}
+          href={work.link}
+          className={styles.portfolio__item}
+        >
+          {work.title}
+        </PortfolioItem>
       ))}
     </section>
   )

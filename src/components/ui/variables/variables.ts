@@ -11,9 +11,14 @@ export const buttons = {
   more: 'Узнать больше',
   edit: 'Редактировать',
   logout: 'Выйти из аккаунта',
+  search: 'Найти',
 }
 
 export const links = {
+  main: {
+    title: 'Главная',
+    link: '/',
+  },
   registration: {
     title: 'Регистрация',
     link: '/signup',
@@ -44,10 +49,6 @@ export const links = {
   }
 }
 
-export const aboutProjects = {
-
-}
-
 export const techs = {
   html: 'HTML',
   css: 'CSS',
@@ -73,8 +74,14 @@ export const portfolio = {
   }
 }
 
+export const notFound = {
+  error: 404,
+  notFound: 'Страница не найдена',
+  back: 'Назад',
+}
+
 export const labels = {
-    name: 'Имя',
-    email: 'E-mail',
-    password: 'Пароль'
+  name: 'Имя',
+  email: 'E-mail',
+  password: 'Пароль'
 }

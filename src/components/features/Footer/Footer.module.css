@@ -28,6 +28,10 @@
   color: white;
 }
 
+.footer__infoDate_type_adaptive {
+  display: none;
+}
+
 .footer__infoLink {
   font-weight: 400;
   font-size: 13px;
@@ -39,4 +43,44 @@
 
 .footer__infoLink:first-of-type {
   margin-right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 80px 20px 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .footer {
+    max-width: 100%;
+    background-color: #202020;
+    padding: 20px 10px;
+  }
+
+  .footer__text {
+    margin-bottom: 30px;
+  }
+  .footer__info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__infoLink {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  .footer__infoLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__infoDate {
+    display: none;
+  }
+
+  .footer__infoDate_type_adaptive {
+    display: block;
+  }
 }

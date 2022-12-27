@@ -1,4 +1,3 @@
-
 .navTab__link {
   margin-right: 30px;;
 }
@@ -12,4 +11,11 @@
     width: 76px;
     height: 32px;
     color: black;
+}
+
+
+@media screen and (max-width: 500px) {
+  .navTab__link {
+    margin-right: 14px;
+  }
 }

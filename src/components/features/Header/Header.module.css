@@ -10,3 +10,15 @@
 .header_dark_type {
   background-color: #202020;
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    padding: 18px 14px;
+  }
+}

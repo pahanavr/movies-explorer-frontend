@@ -45,7 +45,14 @@
   color: white;
 }
 
-.searchForm__filer {
-  padding-bottom: 20px;
-  border-bottom: 1px solid red;
+@media screen and (max-width: 768px) {
+  .searchForm {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .searchForm__filter {
+    padding-bottom: 63px;
+  }
 }
+

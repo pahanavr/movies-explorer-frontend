@@ -11,3 +11,18 @@
   color: #8B8B8B;
   margin: 0 0 50px;
 }
+
+.portfolio__item {
+  transition: 0.2s ease-in;
+}
+
+.portfolio__item:hover {
+  transition: 0.2s ease-in;
+  opacity: 0.3;
+}
+
+@media screen and (max-width: 450px) {
+  .portfolio {
+    padding: 70px 14px;
+  }
+}

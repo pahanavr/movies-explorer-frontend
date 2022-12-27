@@ -1,6 +1,18 @@
 .login {
   background-color: #202020;
-  padding: 70px 440px;
+  padding: 70px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.login__header {
+  width: 396px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .login__title {
@@ -9,6 +21,10 @@
   line-height: 29px;
   color: white;
   margin: 40px 0;
+}
+
+.login__form {
+  width: 396px;
 }
 
 .login__label {
@@ -55,4 +71,46 @@
   line-height: 17px;
   text-align: center;
   color: #4285F4;
+}
+
+@media screen and (max-width: 500px) {
+  .login {
+    padding: 56px 30px 30px;
+  }
+
+  .login__title {
+    margin-bottom: 50px 0 80px;
+  }
+
+  .login__header {
+    width: 100%;
+    align-items: center;
+  }
+
+  .login__form {
+    width: 100%;
+  }
+  
+  .login__label {
+    padding-bottom: 10px;
+  }
+
+  .login__label:last-of-type {
+    margin-bottom: 321px;
+  }
+
+  .login__submitButton {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .login__enterText {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .login__enterLink {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
