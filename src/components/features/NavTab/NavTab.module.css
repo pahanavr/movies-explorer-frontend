@@ -1,0 +1,21 @@
+.navTab__link {
+  margin-right: 30px;;
+}
+
+.navTab__link_type_button {
+    background-color: #3DDC84;
+    border: none;
+    margin: 0;
+    border-radius: 3px;
+    padding: 8px 20px;
+    width: 76px;
+    height: 32px;
+    color: black;
+}
+
+
+@media screen and (max-width: 500px) {
+  .navTab__link {
+    margin-right: 14px;
+  }
+}

@@ -1,0 +1,28 @@
+.account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account__profileButton {
+  display: flex;
+  align-items: center;
+}
+
+.account__profileTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: white;
+  margin-right: 17px;
+}
+
+.account__profileIconBox {
+  width: 26px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #313131;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

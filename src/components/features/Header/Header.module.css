@@ -1,0 +1,24 @@
+.header {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 70px;
+  background-color: #073042;
+}
+
+.header_dark_type {
+  background-color: #202020;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    padding: 18px 14px;
+  }
+}
