@@ -6,11 +6,14 @@ import styles from './SavedMovies.module.css';
 
 export const SavedMovies = () => {
   return (
-    <main className={styles.savedMovies}>
+    <>
       <Header isLoggedIn />
-      <SearchForm />
-      <MoviesCardList />
+      <main className={styles.savedMovies}>
+        <SearchForm />
+        <MoviesCardList />
+      </main>
       <Footer />
-    </main>
+    </>
+
   )
 }

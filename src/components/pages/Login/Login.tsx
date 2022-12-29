@@ -8,44 +8,46 @@ export const Login = () => {
   return (
     <div className={styles.login}>
       <header className={styles.login__header}>
-        <Logo className={styles.login__headerLogo}/>
+        <Logo className={styles.login__headerLogo} />
         <h2 className={styles.login__title}>Рады видеть!</h2>
-      </header>      
-      <form className={styles.login__form}>
-        <Input
-          labelClassName={styles.login__label}
-          className={styles.login__input}
-          type='email'
-          name='email'
-          label={labels.email}
-          required={true}
-        />
-        <Input
-          labelClassName={styles.login__label}
-          className={styles.login__input}
-          type='password'
-          name='password'
-          label={labels.password}
-          required={true}
-        />
-        <Clickable
-          type='submit'
-          className={styles.login__submitButton}
-        >
-          {buttons.signin}
-        </Clickable>
-        <div className={styles.login__enterContainer}>
-          <p className={styles.login__enterText}>
-            Еще не зарегистрированы?
-          </p>
+      </header>
+      <main className={styles.login__main}>
+        <form className={styles.login__form}>
+          <Input
+            labelClassName={styles.login__label}
+            className={styles.login__input}
+            type='email'
+            name='email'
+            label={labels.email}
+            required={true}
+          />
+          <Input
+            labelClassName={styles.login__label}
+            className={styles.login__input}
+            type='password'
+            name='password'
+            label={labels.password}
+            required={true}
+          />
           <Clickable
-            className={styles.login__enterLink}
-            href={links.registration.link}
+            type='submit'
+            className={styles.login__submitButton}
           >
-            {links.registration.title}
+            {buttons.signin}
           </Clickable>
-        </div>
-      </form>
+          <div className={styles.login__enterContainer}>
+            <p className={styles.login__enterText}>
+              Еще не зарегистрированы?
+            </p>
+            <Clickable
+              className={styles.login__enterLink}
+              href={links.registration.link}
+            >
+              {links.registration.title}
+            </Clickable>
+          </div>
+        </form>
+      </main>
     </div>
   )
 }

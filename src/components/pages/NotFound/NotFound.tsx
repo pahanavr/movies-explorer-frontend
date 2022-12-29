@@ -5,7 +5,7 @@ import styles from './NotFound.module.css';
 
 export const NotFound = () => {
   const navigate = useNavigate();
-  
+
   return (
     <main className={styles.notFound}>
       <h2 className={styles.notFound__title}>
@@ -14,7 +14,7 @@ export const NotFound = () => {
       <p className={styles.notFound__subtitle}>
         {notFound.notFound}
       </p>
-      <Clickable 
+      <Clickable
         className={styles.notFound__backButton}
         onClick={() => navigate(-1)}
       >

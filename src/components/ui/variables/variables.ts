@@ -12,6 +12,7 @@ export const buttons = {
   edit: 'Редактировать',
   logout: 'Выйти из аккаунта',
   search: 'Найти',
+  still: 'Еще',
 }
 
 export const links = {

@@ -1,4 +1,5 @@
 import { Clickable } from '../../ui/Clickable/Clickable';
+import { buttons } from '../../ui/variables/variables';
 import { MoviesCard } from '../MoviesCard/MoviesCard';
 import styles from './MoviesCardList.module.css';
 
@@ -59,7 +60,7 @@ export const MoviesCardList = () => {
       <Clickable
         className={styles.cardList__stillButton}
       >
-        Еще
+        {buttons.still}
       </Clickable>
     </section>
   )

@@ -29,7 +29,16 @@
 
 .login__label {
   margin-bottom: 24px;
+  padding: 0;
+}
+
+.login__input {
+  padding-bottom: 10px;
   border-bottom: 1px solid #424242;
+}
+
+.login__input:focus {
+  border-bottom: 1px solid #4285F4;
 }
 
 .login__label:last-of-type {

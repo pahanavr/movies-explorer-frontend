@@ -6,11 +6,13 @@ import styles from './Movies.module.css';
 
 export const Movies = () => {
   return (
-    <main className={styles.movies}>
+    <>
       <Header isLoggedIn />
-      <SearchForm />
-      <MoviesCardList />
+      <main className={styles.movies}>
+        <SearchForm />
+        <MoviesCardList />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

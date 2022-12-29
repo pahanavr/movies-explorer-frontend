@@ -11,7 +11,7 @@
   text-align: center;
   color: #8B8B8B;
   padding: 0 0 20px;
-  margin: 0;
+  margin: 0 0 20px;
   border-bottom: 1px solid #424242;
 }
 
@@ -26,6 +26,7 @@
   font-size: 13px;
   line-height: 16px;
   color: white;
+  margin: 0;
 }
 
 .footer__infoDate_type_adaptive {
@@ -55,25 +56,28 @@
   .footer {
     max-width: 100%;
     background-color: #202020;
-    padding: 20px 10px;
+    padding: 80px 10px 20px;
   }
 
   .footer__text {
     margin-bottom: 30px;
   }
+
   .footer__info {
     display: flex;
     flex-direction: column;
   }
 
-  .footer__infoLink {
+  .footer__infoLink:first-of-type {
     margin-right: 0;
     margin-bottom: 12px;
   }
+
   .footer__infoLinks {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 30px;
   }
 
   .footer__infoDate {

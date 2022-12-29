@@ -29,7 +29,6 @@ export const Input = ({
   return (
     <label className={cx(styles.inputComponent, labelClassName)}>
       {label}
-      {children}
       <input
         className={cx(styles.inputComponent__input, className)}
         type={type}
@@ -39,6 +38,7 @@ export const Input = ({
         required={required}
         defaultChecked={defaultChecked}
       />
+      {children}
     </label>
   )
 }

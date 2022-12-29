@@ -14,8 +14,10 @@ export const SearchForm = () => {
           name='search'
           type='search'
           placeholder='Фильм'
+          required={true}
         >
           <Clickable
+            type='submit'
             className={styles.searchForm__submitButton}
           >
             {buttons.search}
