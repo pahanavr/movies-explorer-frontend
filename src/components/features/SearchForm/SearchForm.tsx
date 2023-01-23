@@ -4,17 +4,33 @@ import { Input } from '../../ui/Input/Input';
 import { buttons } from '../../ui/variables/variables';
 import styles from './SearchForm.module.css';
 
-export const SearchForm = () => {
+type Props = {
+  onChangeCheckboxValue?: () => void;
+  onSearch?: Function;
+  shortMovie?: boolean;
+  onSubmit?: any;
+  defaultValue?: string;
+}
+
+export const SearchForm = ({
+  onChangeCheckboxValue,
+  onSearch,
+  shortMovie,
+  onSubmit,
+  defaultValue,
+}: Props) => {
+
   return (
     <section className={styles.searchForm}>
-      <form className={styles.searchForm__form}>
+      <form className={styles.searchForm__form} onSubmit={onSubmit}>
         <Input
           labelClassName={styles.searchForm__label}
           className={styles.searchForm__input}
           name='search'
           type='search'
           placeholder='Фильм'
-          required={true}
+          onChange={onSearch}
+          defaultValue={defaultValue}
         >
           <Clickable
             type='submit'
@@ -24,7 +40,11 @@ export const SearchForm = () => {
           </Clickable>
         </Input>
       </form>
-      <FilterCheckbox className={styles.searchForm__filter} />
+      <FilterCheckbox
+        className={styles.searchForm__filter}
+        onChangeCheckboxValue={onChangeCheckboxValue}
+        shortMovie={shortMovie}
+      />
     </section>
   )
 }

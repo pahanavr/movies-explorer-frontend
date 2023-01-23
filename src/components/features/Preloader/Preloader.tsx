@@ -1,4 +1,4 @@
-import styles from './Preloader.module.css'
+import styles from './Preloader.module.css';
 
 export const Preloader = () => {
   return (
@@ -7,5 +7,5 @@ export const Preloader = () => {
         <span className={styles.preloader__round}></span>
       </div>
     </div>
-  )
+  );
 };

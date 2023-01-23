@@ -6,13 +6,14 @@
   align-items: center;
   background-color: #202020;
   padding: 70px 70px 80px;
+  position: relative;
 }
 
 .cardList__grid {
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   grid-auto-columns: 1fr;
@@ -21,6 +22,14 @@
   background-color: #202020;
   margin-bottom: 60px;
 }
+
+/* .cardList__card:nth-child(n + 13) {
+  display: none
+}
+
+.cardList__card_visible {
+  display: block;
+} */
 
 .cardList__stillButton {
   width: 320px;
@@ -37,6 +46,14 @@
 .cardList__stillButton:hover {
   transition: 0.3s;
   opacity: 0.5;
+}
+
+.cardList__notFoundMovies {
+  color: rgba(255, 255, 255, 0.555);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 50px;
+  margin: 0;
 }
 
 @media screen and (max-width: 1080px) {
@@ -63,6 +80,11 @@
   .cardList {
     padding: 70px 30px 80px;
   }
+
+  .cardList__notFoundMovies {
+    font-size: 30px;
+    line-height: 30px;
+  }
 }
 
 @media screen and (max-width: 620px) {
@@ -70,5 +92,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .cardList__notFoundMovies {
+    font-size: 20px;
+    line-height: 20px;
   }
 }

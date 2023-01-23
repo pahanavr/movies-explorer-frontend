@@ -26,7 +26,7 @@
   color: #FFFFFF;
 }
 
-.card__saveBox {
+.card__buttonBody {
   padding: 0;
   width: 24px;
   height: 24px;
@@ -38,7 +38,28 @@
   transition: 0.3s ease;
 }
 
+.card__saveButton {
+  background-image: url('../../../images/save_icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card__saveButton_type_active {
+  background-image: url('../../../images/save_icon-active.svg');
+}
+
 .card__saveBox:hover {
+  transition: 0.3s ease;
+  opacity: 0.5;
+}
+
+.card__deleteButton {
+  background-image: url('../../../images/delete_icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card__deleteButton:hover {
   transition: 0.3s ease;
   opacity: 0.5;
 }

@@ -3,7 +3,6 @@ import { links } from '../variables/variables';
 import styles from './Account.module.css';
 import profileIcon from '../../../images/profile_icon.svg';
 
-
 export const Account = () => {
   return (
     <div className={styles.account}>

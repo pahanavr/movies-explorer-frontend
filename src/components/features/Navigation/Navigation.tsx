@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { Account } from '../../ui/Account/Account';
 
 export const Navigation = () => {
-
   const [activeMenu, setActiveMenu] = useState<boolean>(false);
 
   return (

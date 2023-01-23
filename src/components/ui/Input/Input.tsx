@@ -1,5 +1,6 @@
 import styles from './Input.module.css';
 import cx from 'classnames';
+import { FieldErrorsImpl, UseFormRegisterReturn } from 'react-hook-form';
 
 type Props = {
   type?: 'text' | 'email' | 'password' | 'search';
@@ -12,6 +13,9 @@ type Props = {
   required?: boolean;
   children?: string | JSX.Element | JSX.Element[];
   defaultChecked?: boolean;
+  registerParams?: UseFormRegisterReturn<string>;
+  onChange?: any;
+  defaultValue?: string;
 }
 
 export const Input = ({
@@ -25,6 +29,9 @@ export const Input = ({
   required = false,
   children,
   defaultChecked,
+  registerParams,
+  onChange,
+  defaultValue,
 }: Props) => {
   return (
     <label className={cx(styles.inputComponent, labelClassName)}>
@@ -37,6 +44,9 @@ export const Input = ({
         value={value}
         required={required}
         defaultChecked={defaultChecked}
+        onChange={onChange}
+        defaultValue={defaultValue}
+        {...registerParams}
       />
       {children}
     </label>

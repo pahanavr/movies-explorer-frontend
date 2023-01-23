@@ -38,7 +38,7 @@ export const links = {
   },
   profile: {
     title: 'Аккаунт',
-    link: '/profile',
+    link: '/users/me',
   },
   yandex: {
     title: 'Яндекс.Практикум',

@@ -1,67 +1,90 @@
+import { useEffect, useState } from 'react';
+import { Movie } from '../../../utils/models/movies';
 import { Clickable } from '../../ui/Clickable/Clickable';
 import { buttons } from '../../ui/variables/variables';
 import { MoviesCard } from '../MoviesCard/MoviesCard';
 import styles from './MoviesCardList.module.css';
+import cx from 'classnames';
+import { Preloader } from '../Preloader/Preloader';
 
-//хардкод, чтобы показать корректность верстки
-const movies = {
-  first: {
-    id: '1',
-    image: 'https://www.film.ru/sites/default/files/images/hfn4.jpg',
-    nameRU: 'Брат 2',
-    duration: '1ч50м'
-  },
-  second: {
-    id: '2',
-    image: 'https://www.film.ru/sites/default/files/images/hfn4.jpg',
-    nameRU: 'Брат 2',
-    duration: '1ч50м'
-  },
-  third: {
-    id: '3',
-    image: 'https://www.film.ru/sites/default/files/images/hfn4.jpg',
-    nameRU: 'Брат 2',
-    duration: '1ч50м'
-  },
-  fourth: {
-    id: '4',
-    image: 'https://www.film.ru/sites/default/files/images/hfn4.jpg',
-    nameRU: 'Брат 2',
-    duration: '1ч50м'
-  },
-  fifth: {
-    id: '5',
-    image: 'https://www.film.ru/sites/default/files/images/hfn4.jpg',
-    nameRU: 'Брат 2',
-    duration: '1ч50м'
-  },
-  sixth: {
-    id: '6',
-    image: 'https://www.film.ru/sites/default/files/images/hfn4.jpg',
-    nameRU: 'Брат 2',
-    duration: '1ч50м'
-  }
+type Props = {
+  onMovieAction: any;
+  movies: Movie[];
+  notFoundMovies?: boolean;
+  savedMovies?: any;
+  preloader?: boolean;
 }
 
-export const MoviesCardList = () => {
+export const MoviesCardList = ({
+  onMovieAction,
+  movies,
+  notFoundMovies,
+  savedMovies,
+  preloader,
+}: Props) => {
+
+  const [showedMovies, setShowedMovies] = useState<number>(0);
+  const windowWidth = window.innerWidth;
+
+  useEffect(() => {
+    numberShowedMovies();
+    window.addEventListener('resize', numberShowedMovies);
+  }, [])
+
+  const changeShowedMovies = () => {
+    if (windowWidth >= 1280) {
+      setShowedMovies(showedMovies + 3);
+    }
+    if (windowWidth < 1280 && windowWidth >= 768) {
+      setShowedMovies(showedMovies + 2);
+    }
+    if (windowWidth < 768 && windowWidth >= 320) {
+      setShowedMovies(showedMovies + 1);
+    }
+  }
+
+  const numberShowedMovies = () => {
+    if (windowWidth > 1280) {
+      setShowedMovies(12);
+    }
+    if (windowWidth < 1280 && windowWidth >= 768) {
+      setShowedMovies(8);
+    }
+    if (windowWidth < 768 && windowWidth >= 320) {
+      setShowedMovies(5);
+    }
+  }
+
   return (
     <section className={styles.cardList}>
-      <div className={styles.cardList__grid}>
-        {Object.values(movies).map(movie => (
-          <MoviesCard
-            key={movie.id}
-            image={movie.image}
-            nameRU={movie.nameRU}
-            duration={movie.duration}
-          />
-        )
-        )}
-      </div>
-      <Clickable
-        className={styles.cardList__stillButton}
-      >
-        {buttons.still}
-      </Clickable>
+      {preloader ? <Preloader /> : (notFoundMovies ?
+        <>
+          <div className={styles.cardList__grid}>
+            {movies?.slice(0, showedMovies)?.map(movie => (
+              <MoviesCard
+                className={cx(styles.cardList__card)}
+                onMovieAction={onMovieAction}
+                movie={movie}
+                key={movie.id || movie.movieId}
+                savedMovies={savedMovies}
+              />
+            ))}
+          </div>
+          {!(movies?.length! <= showedMovies) ?
+            <Clickable
+              className={styles.cardList__stillButton}
+              onClick={changeShowedMovies}
+            >
+              {buttons.still}
+            </Clickable>
+            : null
+          }
+        </>
+        :
+        <span className={styles.cardList__notFoundMovies}>
+          Ничего не найдено
+        </span>
+      )}
     </section>
   )
 }
