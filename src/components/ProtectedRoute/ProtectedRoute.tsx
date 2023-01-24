@@ -12,7 +12,7 @@ function ProtectedRoute({
   const token = localStorage.getItem('jwt');
 
   if (!token && !isLoggedIn) {
-    return (<Navigate to='/signin' replace />);
+    return (<Navigate to='/' replace />);
   } else if (token && isLoggedIn) {
     return (<Navigate to='/' replace />);
   } else {
