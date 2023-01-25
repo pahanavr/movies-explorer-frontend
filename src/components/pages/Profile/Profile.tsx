@@ -4,15 +4,16 @@ import { Input } from '../../ui/Input/Input';
 import { buttons, labels } from '../../ui/variables/variables';
 import styles from './Profile.module.css';
 import cx from 'classnames';
-import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import CurrentUserContext from '../../../contexts/CurrentUserContext';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   onSubmit?: any;
   nameInput?: string;
   success?: boolean;
+  onSignOut?: any;
 }
 
 export interface FormProfileInputs {
@@ -24,6 +25,7 @@ export const Profile = ({
   onSubmit,
   nameInput,
   success,
+  onSignOut,
 }: Props) => {
   const currentUser = useContext(CurrentUserContext);
 
@@ -40,6 +42,13 @@ export const Profile = ({
     }
   });
 
+  const navigate = useNavigate();
+
+  const logout = () => {
+    onSignOut()
+    navigate('/');
+  }
+
   const watchName = watch('name')
   const watchEmail = watch('email')
   const disabledEditButton = (currentUser?.name === watchName && currentUser?.email === watchEmail) ? true : false;
@@ -48,13 +57,6 @@ export const Profile = ({
     setValue('name', currentUser?.name || '')
     setValue('email', currentUser?.email || '')
   }, [currentUser])
-
-  const navigate = useNavigate();
-
-  const onSignOut = () => {
-    localStorage.clear();
-    navigate('/');
-  };
 
   const nameInputRegister = register('name', {
     required: 'Обязательное поле',
@@ -104,7 +106,7 @@ export const Profile = ({
             </Clickable>
             <Clickable
               className={cx(styles.profile__button, styles.profile__button_type_red)}
-              onClick={onSignOut}
+              onClick={logout}
             >
               {buttons.logout}
             </Clickable>

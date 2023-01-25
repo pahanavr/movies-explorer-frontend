@@ -5,23 +5,21 @@ import { buttons, labels, links } from '../../ui/variables/variables';
 import { Logo } from '../../ui/Logo/Logo';
 import styles from './Register.module.css';
 import { useNavigate } from 'react-router-dom';
-import * as authApi from '../../../utils/AuthApi';
-import mainApi from '../../../utils/MainApi';
 import { useEffect } from 'react';
 
-interface FormInputs {
+export interface FormRegisterInputs {
   nameInput?: string;
   emailInput: string;
   passwordInput: string;
 }
 
-type Register = {
+export type Register = {
   name?: string | undefined;
   email: string;
   password: string;
 }
 
-export const Register = () => {
+export const Register = ({onRegister}: {onRegister?: any}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,40 +31,9 @@ export const Register = () => {
   const {
     register,
     handleSubmit,
-  } = useForm<FormInputs>({
+  } = useForm<FormRegisterInputs>({
     criteriaMode: 'all',
   });
-
-  const onSubmit = (data: FormInputs) => {
-    const body = {
-      name: data.nameInput,
-      email: data.emailInput,
-      password: data.passwordInput,
-    } as Register;
-
-    return authApi.register(body)
-      .then((res) => {
-        if (res) {
-          return authApi.authorize(body.email, body.password)
-            .then((res: any) => {
-              if (!res) throw new Error('Неправильные имя пользователя или пароль');
-              if (res) {
-                localStorage.setItem('jwt', res.token!);
-                localStorage.setItem('searchedMovies', JSON.stringify([]));
-                localStorage.setItem('searchValue', '')
-                mainApi.getProfileInfo();
-                navigate('/movies')
-              }
-            }).catch((error: any) => console.log(error));
-        }
-        if (!res) {
-          throw new Error('Что-то пошло не так');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
 
   const nameInput = register('nameInput', {})
 
@@ -89,7 +56,7 @@ export const Register = () => {
         <h2 className={styles.register__title}>Добро пожаловать!</h2>
       </header>
       <main className={styles.register__}>
-        <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.register__form} onSubmit={handleSubmit(onRegister)}>
           <Input
             labelClassName={styles.register__label}
             className={styles.register__input}

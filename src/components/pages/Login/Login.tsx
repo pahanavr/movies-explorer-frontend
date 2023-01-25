@@ -1,50 +1,29 @@
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Clickable } from '../../ui/Clickable/Clickable';
 import { Input } from '../../ui/Input/Input';
 import { Logo } from '../../ui/Logo/Logo';
 import { buttons, labels, links } from '../../ui/variables/variables';
 import styles from './Login.module.css';
-import * as authApi from '../../../utils/AuthApi';
 
-interface FormInputs {
+export interface FormLoginInputs {
   emailInput: string;
   passwordInput: string;
 }
 
-type Login = {
+export type Login = {
   email: string;
   password: string;
   token?: string;
 }
 
-export const Login = () => {
-  const navigate = useNavigate();
+export const Login = ({ onLogin }: { onLogin?: any }) => {
 
   const {
     register,
     handleSubmit,
-  } = useForm<FormInputs>({
+  } = useForm<FormLoginInputs>({
     criteriaMode: 'all',
   });
-
-  const onSubmit = async (data: FormInputs) => {
-    const body = {
-      email: data.emailInput,
-      password: data.passwordInput,
-    } as Login;
-
-    return authApi.authorize(body.email, body.password)
-      .then((res: Login) => {
-        if (!res) throw new Error('Неправильные имя пользователя или пароль');
-        if (res) {
-          localStorage.setItem('jwt', res.token!);
-          localStorage.setItem('searchedMovies', JSON.stringify([]));
-          localStorage.setItem('searchValue', '')
-          navigate('/movies')
-        }
-      }).catch((error: any) => console.log(error));
-  }
 
   const emailInput = register('emailInput', {
     required: 'Обязательное поле',
@@ -65,7 +44,7 @@ export const Login = () => {
         <h2 className={styles.login__title}>Рады видеть!</h2>
       </header>
       <main className={styles.login__main}>
-        <form className={styles.login__form} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.login__form} onSubmit={handleSubmit(onLogin)}>
           <Input
             labelClassName={styles.login__label}
             className={styles.login__input}

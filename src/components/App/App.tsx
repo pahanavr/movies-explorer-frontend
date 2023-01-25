@@ -1,12 +1,12 @@
 import { Main } from '../pages/Main/Main';
 import styles from './App.module.css';
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
+  useNavigate,
 } from 'react-router-dom';
-import { Register } from '../pages/Register/Register';
-import { Login } from '../pages/Login/Login';
+import { Register, FormRegisterInputs } from '../pages/Register/Register';
+import { FormLoginInputs, Login } from '../pages/Login/Login';
 import { NotFound } from '../pages/NotFound/NotFound';
 import { FormProfileInputs, Profile } from '../pages/Profile/Profile';
 import { Movies } from '../pages/Movies/Movies';
@@ -17,7 +17,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
 import { Movie } from '../../utils/models/movies';
 import moviesApi from '../../utils/MoviesApi';
-import { User } from '../../utils/models/users';
+import * as authApi from '../../utils/AuthApi';
 
 function App() {
   const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
@@ -27,14 +27,42 @@ function App() {
   const [searchInput, setSearchInput] = useState<string>('');
   const [searchedSavedInput, setSearchedSavedInput] = useState<string>('');
   const [preloader, setPreloader] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User>();
+  const [currentUser, setCurrentUser] = useState<any>({});
   const [success, setSuccess] = useState<boolean>(false)
   const [showShortMovies, setShowShortMovies] = useState<boolean>(false)
   const [showShortSavedMovies, setShowShortSavedMovies] = useState<boolean>(false)
 
+  const navigate = useNavigate();
   const token = localStorage.getItem('jwt');
   const searchedMoviesFromStorage = JSON.parse(localStorage.getItem('searchedMovies')!);
   const searchValueFromStorage = localStorage.getItem('searchValue');
+
+
+  const onSignOut = () => {
+    localStorage.clear();
+    setCurrentUser({});
+    console.log(currentUser);
+    setFilteredMovies([]);
+    console.log(filteredMovies);
+    setFilteredSavedMovies([]);
+    console.log(filteredSavedMovies);
+    setSearchInput('');
+    console.log(searchInput);
+    setSearchedSavedInput('');
+    console.log(searchedSavedInput);
+    setShowShortMovies(false);
+    console.log(showShortMovies);
+    setShowShortSavedMovies(false);
+    console.log(showShortSavedMovies);
+  };
+
+  console.log(currentUser);
+  console.log(filteredMovies);
+  console.log(filteredSavedMovies);
+  console.log(searchInput);
+  console.log(searchedSavedInput);
+  console.log(showShortMovies);
+  console.log(showShortSavedMovies);
 
   //get profile info
   useEffect(() => {
@@ -42,7 +70,6 @@ function App() {
       mainApi
         .getProfileInfo()
         .then((res) => {
-          console.log(res)
           setCurrentUser(res);
         })
         .catch((err) => console.log(err));
@@ -83,6 +110,51 @@ function App() {
           console.log(err);
         });
   }, [token]);
+
+  //login
+  const handleSubmitLogin = async (data: FormLoginInputs) => {
+    const body = {
+      email: data.emailInput,
+      password: data.passwordInput,
+    } as Login;
+
+    return authApi.authorize(body.email, body.password)
+      .then((res: Login) => {
+        if (!res) throw new Error('Неправильные имя пользователя или пароль');
+        if (res) {
+          setCurrentUser(res);
+          localStorage.setItem('jwt', res.token!);
+          localStorage.setItem('searchedMovies', JSON.stringify([]));
+          localStorage.setItem('searchValue', '')
+          navigate('/movies')
+        }
+      }).catch((error: any) => console.log(error));
+  }
+  //register
+  const handleRegisterSubmit = (data: FormRegisterInputs) => {
+    const body = {
+      name: data.nameInput,
+      email: data.emailInput,
+      password: data.passwordInput,
+    } as Register;
+
+    return authApi.register(body)
+      .then((res) => {
+        console.log(res)
+        handleSubmitLogin({
+          emailInput: body.email,
+          passwordInput: body.password,
+        })
+        if (!res) {
+          throw new Error('Что-то пошло не так');
+        }
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
 
   //update user info
   const handeUpdateUser = (data: FormProfileInputs) => {
@@ -186,72 +258,71 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={styles.page}>
-        <Router>
-          <Routes>
-            <Route path='/' element={
-              <Main />
-            }
-            />
-            <Route path='/signup' element={
-              <ProtectedRoute isLoggedIn={true}>
-                <Register />
-              </ProtectedRoute>
-            }
-            />
-            <Route path='/signin' element={
-              <ProtectedRoute isLoggedIn={true}>
-                <Login />
-              </ProtectedRoute>} />
-            <Route path='/users/me' element={
-              <ProtectedRoute>
-                <Profile
-                  onSubmit={handeUpdateUser}
-                  nameInput={currentUser?.name}
-                  success={success}
-                />
-              </ProtectedRoute>
-            }
-            />
-            <Route path='/movies' element={
-              <ProtectedRoute>
-                <Movies
-                  onSubmit={handleSearchMovies}
-                  onSearch={handleChangeSearchMovies}
-                  onChangeCheckboxValue={handleShowShortMovies}
-                  movies={showShortMovies ? shortFilteredMovies : filteredMovies}
-                  onMovieSave={handleSaveMovie}
-                  notFoundMovies={(filteredMovies?.length !== 0)}
-                  savedMovies={savedMovies}
-                  shortMovie={showShortMovies}
-                  preloader={preloader}
-                  defaultValue={searchValueFromStorage?.toString()}
-                />
-              </ProtectedRoute>
-            }
-            />
-            <Route path='/saved-movies' element={
-              <ProtectedRoute>
-                <SavedMovies
-                  onSubmit={handleSearchSavedMovies}
-                  onSearch={handleChangeSearchSavedMovies}
-                  onChangeCheckboxValue={handleShowShortSavedMovies}
-                  movies={showShortSavedMovies ? shortFilteredSavedMovies : filteredSavedMovies}
-                  onMovieDelete={handleDeleteMovie}
-                  notFoundMovies={filteredSavedMovies.length !== 0}
-                  shortMovie={showShortSavedMovies}
-                  preloader={preloader}
-                />
-              </ProtectedRoute>
-            }
-            />
-            <Route path='*' element={
-              <ProtectedRoute>
-                <NotFound />
-              </ProtectedRoute>
-            }
-            />
-          </Routes>
-        </Router>
+        <Routes>
+          <Route path='/' element={
+            <Main />
+          }
+          />
+          <Route path='/signup' element={
+            <ProtectedRoute isLoggedIn={true}>
+              <Register onRegister={handleRegisterSubmit} />
+            </ProtectedRoute>
+          }
+          />
+          <Route path='/signin' element={
+            <ProtectedRoute isLoggedIn={true}>
+              <Login onLogin={handleSubmitLogin} />
+            </ProtectedRoute>} />
+          <Route path='/users/me' element={
+            <ProtectedRoute>
+              <Profile
+                onSubmit={handeUpdateUser}
+                nameInput={currentUser?.name}
+                success={success}
+                onSignOut={onSignOut}
+              />
+            </ProtectedRoute>
+          }
+          />
+          <Route path='/movies' element={
+            <ProtectedRoute>
+              <Movies
+                onSubmit={handleSearchMovies}
+                onSearch={handleChangeSearchMovies}
+                onChangeCheckboxValue={handleShowShortMovies}
+                movies={showShortMovies ? shortFilteredMovies : filteredMovies}
+                onMovieSave={handleSaveMovie}
+                notFoundMovies={(filteredMovies?.length !== 0)}
+                savedMovies={savedMovies}
+                shortMovie={showShortMovies}
+                preloader={preloader}
+                defaultValue={searchValueFromStorage?.toString()}
+              />
+            </ProtectedRoute>
+          }
+          />
+          <Route path='/saved-movies' element={
+            <ProtectedRoute>
+              <SavedMovies
+                onSubmit={handleSearchSavedMovies}
+                onSearch={handleChangeSearchSavedMovies}
+                onChangeCheckboxValue={handleShowShortSavedMovies}
+                movies={showShortSavedMovies ? shortFilteredSavedMovies : filteredSavedMovies}
+                onMovieDelete={handleDeleteMovie}
+                notFoundMovies={filteredSavedMovies.length !== 0}
+                shortMovie={showShortSavedMovies}
+                preloader={preloader}
+              />
+            </ProtectedRoute>
+          }
+          />
+          <Route path='*' element={
+            <ProtectedRoute>
+              <NotFound />
+            </ProtectedRoute>
+          }
+          />
+        </Routes>
       </div>
     </CurrentUserContext.Provider>
   );
