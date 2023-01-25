@@ -18,5 +18,6 @@ export type Movie = {
   nameEN: string,
   _id?: string,
   movieId?: number
+  owner?: any;
 }
 

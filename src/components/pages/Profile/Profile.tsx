@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { useContext, useEffect } from 'react';
 import CurrentUserContext from '../../../contexts/CurrentUserContext';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 type Props = {
   onSubmit?: any;
@@ -41,13 +40,6 @@ export const Profile = ({
       email: currentUser?.email
     }
   });
-
-  const navigate = useNavigate();
-
-  const logout = () => {
-    onSignOut()
-    navigate('/');
-  }
 
   const watchName = watch('name')
   const watchEmail = watch('email')
@@ -106,7 +98,7 @@ export const Profile = ({
             </Clickable>
             <Clickable
               className={cx(styles.profile__button, styles.profile__button_type_red)}
-              onClick={logout}
+              onClick={onSignOut}
             >
               {buttons.logout}
             </Clickable>

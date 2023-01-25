@@ -37,32 +37,19 @@ function App() {
   const searchedMoviesFromStorage = JSON.parse(localStorage.getItem('searchedMovies')!);
   const searchValueFromStorage = localStorage.getItem('searchValue');
 
-
   const onSignOut = () => {
-    localStorage.clear();
     setCurrentUser({});
-    console.log(currentUser);
+    setMovies([]);
+    setSavedMovies([]);
     setFilteredMovies([]);
-    console.log(filteredMovies);
     setFilteredSavedMovies([]);
-    console.log(filteredSavedMovies);
     setSearchInput('');
-    console.log(searchInput);
     setSearchedSavedInput('');
-    console.log(searchedSavedInput);
     setShowShortMovies(false);
-    console.log(showShortMovies);
     setShowShortSavedMovies(false);
-    console.log(showShortSavedMovies);
+    localStorage.clear();
+    navigate('/');
   };
-
-  console.log(currentUser);
-  console.log(filteredMovies);
-  console.log(filteredSavedMovies);
-  console.log(searchInput);
-  console.log(searchedSavedInput);
-  console.log(showShortMovies);
-  console.log(showShortSavedMovies);
 
   //get profile info
   useEffect(() => {
@@ -93,7 +80,8 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-        }).finally(() => setPreloader(false));
+        })
+        .finally(() => setPreloader(false));
   }, [token]);
 
   //get saved movies
@@ -102,6 +90,7 @@ function App() {
       mainApi
         .getSavedMovies()
         .then((res) => {
+          console.log(res);
           setSavedMovies(res);
           localStorage.setItem('savedMovies', JSON.stringify(res));
           setFilteredSavedMovies(JSON.parse(localStorage.getItem('savedMovies')!))
@@ -130,6 +119,7 @@ function App() {
         }
       }).catch((error: any) => console.log(error));
   }
+
   //register
   const handleRegisterSubmit = (data: FormRegisterInputs) => {
     const body = {
@@ -140,7 +130,6 @@ function App() {
 
     return authApi.register(body)
       .then((res) => {
-        console.log(res)
         handleSubmitLogin({
           emailInput: body.email,
           passwordInput: body.password,
@@ -154,7 +143,6 @@ function App() {
         console.log(err);
       })
   }
-
 
   //update user info
   const handeUpdateUser = (data: FormProfileInputs) => {
@@ -182,9 +170,9 @@ function App() {
     const savedMovie = savedMovies.find((item) => item.movieId === movie.id)!;
     if (!savedMovies.includes(savedMovie!)) {
       return mainApi.addMovie(movie)
-        .then((movieReq: Movie) => {
+        .then((movie: Movie) => {
           if (!savedMovie) {
-            const savedMovieList = ([...savedMovies, movieReq]);
+            const savedMovieList = ([...savedMovies, movie]);
             setSavedMovies(savedMovieList)
             setFilteredSavedMovies(savedMovieList)
             localStorage.setItem('savedMovies', JSON.stringify(savedMovieList));
