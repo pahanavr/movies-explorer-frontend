@@ -1,2 +1,2 @@
 export const moviesApiUrl = 'https://api.nomoreparties.co';
-export const localApiUrl = 'http://api.diploma.pahanavr.nomoredomains.club';
+export const localApiUrl = 'https://api.diploma.pahanavr.nomoredomains.club';

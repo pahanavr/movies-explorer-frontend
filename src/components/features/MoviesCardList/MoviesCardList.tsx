@@ -13,6 +13,7 @@ type Props = {
   notFoundMovies?: boolean;
   savedMovies?: any;
   preloader?: boolean;
+  firstLoad?: boolean;
 }
 
 export const MoviesCardList = ({
@@ -21,6 +22,7 @@ export const MoviesCardList = ({
   notFoundMovies,
   savedMovies,
   preloader,
+  firstLoad,
 }: Props) => {
 
   const [showedMovies, setShowedMovies] = useState<number>(0);
@@ -57,7 +59,7 @@ export const MoviesCardList = ({
 
   return (
     <section className={styles.cardList}>
-      {preloader ? <Preloader /> : (notFoundMovies ?
+      {firstLoad ? (preloader ? <Preloader /> : (notFoundMovies ?
         <>
           <div className={styles.cardList__grid}>
             {movies?.slice(0, showedMovies)?.map(movie => (
@@ -84,7 +86,10 @@ export const MoviesCardList = ({
         <span className={styles.cardList__notFoundMovies}>
           Ничего не найдено
         </span>
-      )}
+      ))
+    :
+    null
+    }
     </section>
   )
 }

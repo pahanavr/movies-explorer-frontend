@@ -22,15 +22,16 @@ import * as authApi from '../../utils/AuthApi';
 function App() {
   const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([])
-  const [filteredSavedMovies, setFilteredSavedMovies] = useState<Movie[]>([])
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState<Movie[]>([]);
   const [searchInput, setSearchInput] = useState<string>('');
   const [searchedSavedInput, setSearchedSavedInput] = useState<string>('');
   const [preloader, setPreloader] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<any>({});
-  const [success, setSuccess] = useState<boolean>(false)
-  const [showShortMovies, setShowShortMovies] = useState<boolean>(false)
-  const [showShortSavedMovies, setShowShortSavedMovies] = useState<boolean>(false)
+  const [success, setSuccess] = useState<boolean>(false);
+  const [showShortMovies, setShowShortMovies] = useState<boolean>(false);
+  const [showShortSavedMovies, setShowShortSavedMovies] = useState<boolean>(false);
+  const [firstLoad, setFirstLoad] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const token = localStorage.getItem('jwt');
@@ -47,6 +48,7 @@ function App() {
     setSearchedSavedInput('');
     setShowShortMovies(false);
     setShowShortSavedMovies(false);
+    setFirstLoad(false);
     localStorage.clear();
     navigate('/');
   };
@@ -204,6 +206,7 @@ function App() {
 
   const handleSearchMovies = (e: any) => {
     e.preventDefault();
+    setFirstLoad(true)
     setPreloader(true);
     if (searchValueFromStorage !== ('' || undefined || null)) {
       setFilteredMovies(searchedMovies);
@@ -285,6 +288,7 @@ function App() {
                 shortMovie={showShortMovies}
                 preloader={preloader}
                 defaultValue={searchValueFromStorage?.toString()}
+                firstLoad={firstLoad}
               />
             </ProtectedRoute>
           }

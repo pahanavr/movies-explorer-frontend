@@ -17,6 +17,7 @@ type Props = {
   preloader?: boolean;
   notFoundSavedMovies?: boolean;
   defaultValue?: string;
+  firstLoad?: boolean;
 }
 
 export const Movies = ({
@@ -30,6 +31,7 @@ export const Movies = ({
   onSubmit,
   preloader,
   defaultValue,
+  firstLoad,
 }: Props) => {
 
   return (
@@ -49,6 +51,7 @@ export const Movies = ({
           notFoundMovies={notFoundMovies}
           savedMovies={savedMovies}
           preloader={preloader}
+          firstLoad={firstLoad}
         />
       </main>
       <Footer />
