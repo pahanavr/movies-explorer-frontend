@@ -106,6 +106,9 @@ function App() {
     if (localStorage.getItem('firstLoad') === 'true') {
       setFirstLoad(true)
     }
+    if (firstLoad === true) {
+      localStorage.setItem('firstLoad', JSON.stringify(firstLoad));
+    }
   }, [firstLoad])
 
   //login
@@ -203,7 +206,7 @@ function App() {
   //search movies
   const handleChangeSearchMovies = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
-    localStorage.setItem('searchValue', e.target.value)
+    localStorage.setItem('searchValue', e.target.value);
   }
 
   const handleChangeSearchSavedMovies = (e: ChangeEvent<HTMLInputElement>) => {

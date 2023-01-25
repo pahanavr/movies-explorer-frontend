@@ -10,7 +10,7 @@ type Props = {
   movie: Movie;
   onMovieAction: Function;
   className?: string;
-  savedMovies: any,
+  savedMovies: Movie[],
 }
 
 export const MoviesCard = ({
