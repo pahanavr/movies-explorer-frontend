@@ -47,8 +47,17 @@ export const Register = () => {
     return authApi.register(body)
       .then((res) => {
         if (res) {
-          mainApi.getProfileInfo()
-          navigate('/users/me')
+          return authApi.authorize(body.email, body.password)
+            .then((res: any) => {
+              if (!res) throw new Error('Неправильные имя пользователя или пароль');
+              if (res) {
+                localStorage.setItem('jwt', res.token!);
+                localStorage.setItem('searchedMovies', JSON.stringify([]));
+                localStorage.setItem('searchValue', '')
+                mainApi.getProfileInfo();
+                navigate('/movies')
+              }
+            }).catch((error: any) => console.log(error));
         }
         if (!res) {
           throw new Error('Что-то пошло не так');
