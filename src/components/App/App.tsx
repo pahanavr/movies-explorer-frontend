@@ -95,12 +95,18 @@ function App() {
           console.log(res);
           setSavedMovies(res);
           localStorage.setItem('savedMovies', JSON.stringify(res));
-          setFilteredSavedMovies(JSON.parse(localStorage.getItem('savedMovies')!))
+          setFilteredSavedMovies(JSON.parse(localStorage.getItem('savedMovies')!));
         })
         .catch((err) => {
           console.log(err);
         });
   }, [token]);
+
+  useEffect(() => {
+    if (localStorage.getItem('firstLoad') === 'true') {
+      setFirstLoad(true)
+    }
+  }, [firstLoad])
 
   //login
   const handleSubmitLogin = async (data: FormLoginInputs) => {
@@ -206,7 +212,8 @@ function App() {
 
   const handleSearchMovies = (e: any) => {
     e.preventDefault();
-    setFirstLoad(true)
+    setFirstLoad(true);
+    localStorage.setItem('firstLoad', JSON.stringify(firstLoad));
     setPreloader(true);
     if (searchValueFromStorage !== ('' || undefined || null)) {
       setFilteredMovies(searchedMovies);

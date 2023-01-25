@@ -6,6 +6,7 @@ import { MoviesCard } from '../MoviesCard/MoviesCard';
 import styles from './MoviesCardList.module.css';
 import cx from 'classnames';
 import { Preloader } from '../Preloader/Preloader';
+import { useLocation } from 'react-router';
 
 type Props = {
   onMovieAction: any;
@@ -27,6 +28,8 @@ export const MoviesCardList = ({
 
   const [showedMovies, setShowedMovies] = useState<number>(0);
   const windowWidth = window.innerWidth;
+  const location = useLocation();
+
 
   useEffect(() => {
     numberShowedMovies();
@@ -59,7 +62,7 @@ export const MoviesCardList = ({
 
   return (
     <section className={styles.cardList}>
-      {firstLoad ? (preloader ? <Preloader /> : (notFoundMovies ?
+      {(firstLoad || location.pathname === '/saved-movies') ?  (preloader ? <Preloader /> : (notFoundMovies ?
         <>
           <div className={styles.cardList__grid}>
             {movies?.slice(0, showedMovies)?.map(movie => (
