@@ -1,6 +1,6 @@
 import styles from './Input.module.css';
 import cx from 'classnames';
-import { FieldErrorsImpl, UseFormRegisterReturn } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 type Props = {
   type?: 'text' | 'email' | 'password' | 'search';

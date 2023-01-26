@@ -27,10 +27,10 @@ export const Login = ({ onLogin }: { onLogin?: any }) => {
 
   const emailInput = register('emailInput', {
     required: 'Обязательное поле',
-    pattern: {
-      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-      message: 'Email введен некорректно',
-    },
+    // pattern: {
+    //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+    //   message: 'Email введен некорректно',
+    // },
   });
 
   const passwordInput = register('passwordInput', {

@@ -6,6 +6,7 @@ import { Logo } from '../../ui/Logo/Logo';
 import styles from './Register.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import cx from 'classnames';
 
 export interface FormRegisterInputs {
   nameInput?: string;
@@ -19,7 +20,15 @@ export type Register = {
   password: string;
 }
 
-export const Register = ({onRegister}: {onRegister?: any}) => {
+type Props = {
+  onRegister?: any;
+  sameEmailError?: boolean;
+}
+
+export const Register = ({
+  onRegister,
+  sameEmailError
+}: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,6 +92,9 @@ export const Register = ({onRegister}: {onRegister?: any}) => {
             required={true}
             registerParams={passwordInput}
           />
+          <span className={cx(styles.register__sameEmail, sameEmailError && styles.register__sameEmail_type_active)}>
+            Произошла ошибка, попробуйте еще раз.
+          </span>
           <Clickable
             type='submit'
             className={styles.register__submitButton}

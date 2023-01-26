@@ -32,6 +32,7 @@ function App() {
   const [showShortMovies, setShowShortMovies] = useState<boolean>(false);
   const [showShortSavedMovies, setShowShortSavedMovies] = useState<boolean>(false);
   const [firstLoad, setFirstLoad] = useState<boolean>(false);
+  const [sameEmailError, setSameEmailError] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const token = localStorage.getItem('jwt');
@@ -141,18 +142,22 @@ function App() {
 
     return authApi.register(body)
       .then((res) => {
-        handleSubmitLogin({
-          emailInput: body.email,
-          passwordInput: body.password,
-        })
+        if (res) {
+          handleSubmitLogin({
+            emailInput: body.email,
+            passwordInput: body.password,
+          })
+        }
         if (!res) {
           throw new Error('Что-то пошло не так');
         }
-        return res;
+        return null;
       })
       .catch((err) => {
+        setSameEmailError(true);
         console.log(err);
       })
+      .finally(() => setTimeout(() => setSameEmailError(false), 2000))
   }
 
   //update user info
@@ -266,7 +271,10 @@ function App() {
           />
           <Route path='/signup' element={
             <ProtectedRoute isLoggedIn={true}>
-              <Register onRegister={handleRegisterSubmit} />
+              <Register
+                onRegister={handleRegisterSubmit}
+                sameEmailError={sameEmailError}
+              />
             </ProtectedRoute>
           }
           />
