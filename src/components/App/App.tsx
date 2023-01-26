@@ -32,7 +32,7 @@ function App() {
   const [showShortMovies, setShowShortMovies] = useState<boolean>(false);
   const [showShortSavedMovies, setShowShortSavedMovies] = useState<boolean>(false);
   const [firstLoad, setFirstLoad] = useState<boolean>(false);
-  const [sameEmailError, setSameEmailError] = useState<boolean>(false);
+  const [registrationError, setRegistraionError] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const token = localStorage.getItem('jwt');
@@ -154,10 +154,10 @@ function App() {
         return null;
       })
       .catch((err) => {
-        setSameEmailError(true);
+        setRegistraionError(true);
         console.log(err);
       })
-      .finally(() => setTimeout(() => setSameEmailError(false), 2000))
+      .finally(() => setTimeout(() => setRegistraionError(false), 2000))
   }
 
   //update user info
@@ -273,7 +273,7 @@ function App() {
             <ProtectedRoute isLoggedIn={true}>
               <Register
                 onRegister={handleRegisterSubmit}
-                sameEmailError={sameEmailError}
+                registrationError={registrationError}
               />
             </ProtectedRoute>
           }

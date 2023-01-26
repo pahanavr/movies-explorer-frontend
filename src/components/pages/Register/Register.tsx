@@ -22,12 +22,12 @@ export type Register = {
 
 type Props = {
   onRegister?: any;
-  sameEmailError?: boolean;
+  registrationError?: boolean;
 }
 
 export const Register = ({
   onRegister,
-  sameEmailError
+  registrationError
 }: Props) => {
   const navigate = useNavigate();
 
@@ -92,7 +92,7 @@ export const Register = ({
             required={true}
             registerParams={passwordInput}
           />
-          <span className={cx(styles.register__sameEmail, sameEmailError && styles.register__sameEmail_type_active)}>
+          <span className={cx(styles.register__sameEmail, registrationError && styles.register__sameEmail_type_active)}>
             Произошла ошибка, попробуйте еще раз.
           </span>
           <Clickable
