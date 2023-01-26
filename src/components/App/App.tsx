@@ -326,11 +326,7 @@ function App() {
             </ProtectedRoute>
           }
           />
-          <Route path='*' element={
-            <ProtectedRoute>
-              <NotFound />
-            </ProtectedRoute>
-          }
+          <Route path='*' element={<NotFound />}
           />
         </Routes>
       </div>
