@@ -13,6 +13,7 @@ type Props = {
   nameInput?: string;
   success?: boolean;
   onSignOut?: any;
+  updateError?: boolean;
 }
 
 export interface FormProfileInputs {
@@ -25,6 +26,7 @@ export const Profile = ({
   nameInput,
   success,
   onSignOut,
+  updateError,
 }: Props) => {
   const currentUser = useContext(CurrentUserContext);
 
@@ -103,6 +105,7 @@ export const Profile = ({
               {buttons.logout}
             </Clickable>
             <span className={cx(styles.profile__success, success && styles.profile__success_type_active)}>Данные успешно обновлены!</span>
+            <span className={cx(styles.profile__updateError, updateError && styles.profile__updateError_type_active)}>Произошла ошибка при обновлении, попробуйте еще раз.</span>
           </div>
         </form>
       </main>

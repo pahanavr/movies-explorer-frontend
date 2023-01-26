@@ -104,6 +104,22 @@
   transition: 0.5s ease;
 }
 
+.profile__updateError {
+  text-align: center;
+  opacity: 0;
+  color: red;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 15px;
+  transition: 0.5s ease;
+}
+
+.profile__updateError_type_active {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s ease;
+}
+
 @media screen and (max-width: 460px) {
   .profile__main {
     padding-right: 30px;

@@ -33,6 +33,8 @@ function App() {
   const [showShortSavedMovies, setShowShortSavedMovies] = useState<boolean>(false);
   const [firstLoad, setFirstLoad] = useState<boolean>(false);
   const [registrationError, setRegistraionError] = useState<boolean>(false);
+  const [updateError, setUpdateError] = useState<boolean>(false);
+
 
   const navigate = useNavigate();
   const token = localStorage.getItem('jwt');
@@ -167,8 +169,14 @@ function App() {
         setCurrentUser(res);
         setSuccess(true)
       })
-      .catch((err: any) => console.log(err))
-      .finally(() => setTimeout(() => setSuccess(false), 3000))
+      .catch((err: any) => {
+        setUpdateError(true);
+        console.log(err)
+      })
+      .finally(() => {
+        setTimeout(() => setSuccess(false), 3000)
+        setTimeout(() => setUpdateError(false), 3000)
+      })
   }
 
   // actions for movie (save and delete)
@@ -289,6 +297,7 @@ function App() {
                 nameInput={currentUser?.name}
                 success={success}
                 onSignOut={onSignOut}
+                updateError={updateError}
               />
             </ProtectedRoute>
           }
