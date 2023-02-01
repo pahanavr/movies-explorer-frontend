@@ -8,7 +8,9 @@ type Props = {
   type?: 'button' | 'submit';
   className?: string;
   onClick?: () => void;
+  onChange?: () => void;
   blank?: boolean;
+  disabled?: boolean;
 }
 
 export const Clickable = ({
@@ -18,6 +20,7 @@ export const Clickable = ({
   className,
   onClick,
   blank = false,
+  disabled = false,
 }: Props) => {
   const target = blank ? { target: '_blank' } : {};
 
@@ -35,6 +38,7 @@ export const Clickable = ({
         onClick={onClick}
         className={cx(styles.button, className)}
         type={type}
+        disabled={disabled}
       >
         {children}
       </button>

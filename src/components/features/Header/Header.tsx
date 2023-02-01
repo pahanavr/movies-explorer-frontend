@@ -4,17 +4,13 @@ import { Logo } from '../../ui/Logo/Logo';
 import { Navigation } from '../Navigation/Navigation';
 import { NavTab } from '../NavTab/NavTab';
 
-type Props = {
-  isLoggedIn?: boolean;
-}
+export const Header = () => {
+  const token = localStorage.getItem('jwt');
 
-export const Header = ({
-  isLoggedIn,
-}: Props) => {
   return (
-    <header className={cx(styles.header, isLoggedIn && styles.header_dark_type)}>
+    <header className={cx(styles.header, token && styles.header_dark_type)}>
       <Logo />
-      {isLoggedIn ?
+      {token ?
         <Navigation />
         :
         <NavTab />

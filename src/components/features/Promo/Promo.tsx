@@ -3,7 +3,8 @@ import styles from './Promo.module.css';
 import promoLogo from '../../../images/promo_logo.svg';
 import { buttons } from '../../ui/variables/variables';
 import cx from 'classnames';
-
+import { links } from '../../ui/variables/variables';
+ 
 export const Promo = () => {
   return (
     <>
@@ -16,6 +17,7 @@ export const Promo = () => {
             Листайте ниже, чтобы узнать больше про этот проект и его создателя
           </p>
           <Clickable
+            href={links.movies.link}
             className={styles.promo__button}
           >
             {buttons.more}
@@ -35,6 +37,7 @@ export const Promo = () => {
           </p>
           <Clickable
             className={styles.promo__button}
+            href={links.movies.link}
           >
             {buttons.more}
           </Clickable>
