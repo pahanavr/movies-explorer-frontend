@@ -9,10 +9,9 @@ Web service about movies (and me). Here you can change the profile information a
 
 **Tools**
 
-* HTML
-* CSS
+* TypeScript
+* CSS Modules
 * BEM
-* Adaptive design
 * React
 * API
 
